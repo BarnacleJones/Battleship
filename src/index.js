@@ -1,5 +1,4 @@
 import './style.css';
-import gameBoard from './dependencies/gameBoard';
 import shipFactory from './dependencies/shipFactory';
 
 

@@ -7,15 +7,13 @@ const shipFactory = (length, name) =>{
   lengthArray = [...Array(ShipLength)].map(x => 1);   
   //array for coordinates to be held
   let coordinates = [];
-
   //define hit function
   function hit(num)
   {
     //mark num as hit
     lengthArray[num] = 0;  
-  }
-
-  
+  }  
+  //determine if sunk
   function isSunk()
   {
     let sunk = true;
@@ -26,14 +24,7 @@ const shipFactory = (length, name) =>{
     });
     return sunk;
   }
-
   return{ShipLength, ShipName, lengthArray, hit, isSunk, coordinates}
-
 }
 
-
 export default shipFactory;
-//for testing
-
-
-  // module.exports = battleship;

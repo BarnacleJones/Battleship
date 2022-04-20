@@ -2,14 +2,12 @@ const { ShipName, coordinates, default: shipFactory } = require("./shipFactory")
 
 //gameboard factory
 const gameBoard = () =>{
-
     //2d array 10x10
     //access values like a grid board[1][1] will be 1
     let board = [...Array(10)].map(x => [0,1,2,3,4,5,6,7,8,9])
-
     //create an array of ship names, so can determine which one is hit
     let shipArray = []
-    
+    //bool value for determining if all ships on board are sunk
     let allShipsSunk = false;
     //function to place the ship
     //remembering the 0 index value, so coords 4,3 (row,col), horiz will end up as
@@ -41,8 +39,7 @@ const gameBoard = () =>{
         // else{alert('Bad ship placement')}
         else{return false;}
     }
-
-    //Gameboards should have a receiveAttack function that takes a pair
+    //receiveAttack function that takes a pair
     // of coordinates, determines whether or not the attack hit a ship
     // and then sends the ‘hit’ function to the correct ship, 
     //or records the coordinates of the missed shot.
@@ -77,7 +74,6 @@ const gameBoard = () =>{
             }
         //not doing anything with a missed shot at this stage, until I have a DOM
     }
-
     //Gameboards should be able to report whether or not all of their ships have been sunk.
     function checkIfAllShipsSunk()
     {
@@ -101,12 +97,10 @@ const gameBoard = () =>{
         //check each value of shipArray.sunk 
         //if they are all 
         return allShipsSunk;
-    }
-   
+    }   
 return {board, placeShip, receiveAttack, shipArray, checkIfAllShipsSunk}
 }
 
 export default gameBoard;
-
 
 // module.exports = playBoard;
