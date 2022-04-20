@@ -3,7 +3,8 @@ const shipFactory = (length, name) =>{
   let ShipLength = length;
   let ShipName = name;
   //create an array of the length, representing a ship
-  let lengthArray = [...Array(ShipLength)].map(x => 1);   
+  let lengthArray = [];
+  lengthArray = [...Array(ShipLength)].map(x => 1);   
   //array for coordinates to be held
   let coordinates = [];
 
@@ -12,7 +13,6 @@ const shipFactory = (length, name) =>{
   {
     //mark num as hit
     lengthArray[num] = 0;  
-    // return lengthArray; 
   }
 
   
@@ -30,7 +30,10 @@ const shipFactory = (length, name) =>{
   return{ShipLength, ShipName, lengthArray, hit, isSunk, coordinates}
 
 }
-//for testing
-let battleship = shipFactory(4, 'battleship');
 
-  module.exports = battleship;
+
+export default shipFactory;
+//for testing
+
+
+  // module.exports = battleship;
