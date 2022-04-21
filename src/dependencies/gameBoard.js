@@ -101,6 +101,6 @@ const gameBoard = () =>{
 return {board, placeShip, receiveAttack, shipArray, checkIfAllShipsSunk}
 }
 
-export default gameBoard;
+export {gameBoard};
 
 // module.exports = playBoard;

@@ -9,7 +9,7 @@ const player = (name, enemyGameboard) =>
     let turn = false;
     let computerTurnsTaken = [];
 
-    function takeTurn(){
+    function takeTurn(aRow, aCol){
     if (playerName == 'computer') {
 
         //need to randomise plays
@@ -43,9 +43,11 @@ const player = (name, enemyGameboard) =>
     else
     {
         //not a computer
-        gameBoardAttackBoard.receiveAttack()
+        gameBoardAttackBoard.receiveAttack(aRow, aCol)
         //the board to attack is the computers board
     }
 }
 
 }
+
+export {player};

@@ -1,0 +1,44 @@
+body{
+    display: grid;
+    text-align: center;
+    grid-template-columns: 1;
+    grid-template-rows: 1fr 4fr .25fr;
+    margin: 0;
+    background-color: rgb(75, 75, 142);
+}
+
+header{
+    grid-area: 1 / 1 / span 1  /span 1;
+}
+
+main{
+    grid-area: 2 / 1 / span 1  /span 1;
+    min-height: max-content;
+    display: flex;
+    /* align-items: center; */
+}
+
+footer{
+    grid-area: 3 / 1 / span 0  /span 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(71, 68, 68);
+  color: white;
+  text-align: center;
+}
+
+#playerBoard, #computerBoard{
+    display: flex; 
+    flex-grow: 1;
+    align-items:stretch;
+}
+#playerCellsDiv, #playerRowDiv, #computerRowDiv #computerCellsDiv{    
+    width: 2em;
+    height: 2em;    
+}
+#playerCellsDiv, #computerCellsDiv{
+    border: 1px solid black;
+}
+

@@ -27,4 +27,4 @@ const shipFactory = (length, name) =>{
   return{ShipLength, ShipName, lengthArray, hit, isSunk, coordinates}
 }
 
-export default shipFactory;
+export {shipFactory};
