@@ -34,11 +34,11 @@ footer{
     flex-grow: 1;
     align-items:stretch;
 }
-#playerCellsDiv, #playerRowDiv, #computerRowDiv #computerCellsDiv{    
+.playerCellsDiv, .playerRowDiv, .computerRowDiv .computerCellsDiv{    
     width: 2em;
     height: 2em;    
 }
-#playerCellsDiv, #computerCellsDiv{
+.playerCellsDiv, .computerCellsDiv{
     border: 1px solid black;
 }
 

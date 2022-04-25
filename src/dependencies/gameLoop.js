@@ -29,11 +29,20 @@ function gamePlay(){
     let computerCarrier = shipFactory(5, 'carrier');
 
     //place player ships
-    // playerBoard.placeShip(playerBattleship, 'vertical', 3,4 )
+    playerBoard.placeShip(playerBattleship, 'vertical', 3,3 );
+    playerBoard.placeShip(playerPatrol, 'horizontal', 0,3 );
+    playerBoard.placeShip(playerSubmarine, 'vertical', 3,6 );
+    playerBoard.placeShip(playerDestroyer, 'horizontal', 8,1);
+    playerBoard.placeShip(playerCarrier, 'horizontal', 9,1 );
+
+
+
+    
+
 }
 
 
-// //attack x 4 to see if all ships are sunk
+// //attack x 4 to see if all ships are sunk - this is working
 // playBoard.receiveAttack(4,4);
 // playBoard.receiveAttack(3,4);
 // playBoard.receiveAttack(5,4);

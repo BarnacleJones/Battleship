@@ -1,4 +1,5 @@
-const { ShipName, coordinates, default: shipFactory } = require("./shipFactory");
+// const { ShipName, coordinates, default: shipFactory } = require("./shipFactory");
+import { ShipName, coordinates, shipFactory } from "./shipFactory";
 
 //gameboard factory
 const gameBoard = () =>{
@@ -15,29 +16,81 @@ const gameBoard = () =>{
     function placeShip(ShipName, alignment,positionRow, positionCol)
     {
         //if the alignment is horizontal and the length of the alignment + ship length is less than 10 (length of board)
-        if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10)) {
+        if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10) ) {
+
+            //need validation for if ships are overlapping
+            // if (document.getElementById(`[${positionRow}, ${positionCol + index}]`).style.backgroundColor != 'red') {
+               //this doesnt work as the document hasnt yet been rendered.... 
+            // }            
             
             for (let index = 0; index < ShipName.ShipLength; index++) {
+                if (
+                    //validation for if ships are overlapping (the value would be ship name, not a number)
+                    board[positionRow][positionCol + index] != 0 && 
+                    board[positionRow][positionCol + index] != 1 && 
+                    board[positionRow][positionCol + index] != 2 && 
+                    board[positionRow][positionCol + index] != 3 && 
+                    board[positionRow][positionCol + index] != 4 &&
+                    board[positionRow][positionCol + index] != 5 && 
+                    board[positionRow][positionCol + index] != 6 &&
+                    board[positionRow][positionCol + index] != 7 &&
+                    board[positionRow][positionCol + index] != 8 &&
+                    board[positionRow][positionCol + index] != 9) 
+                {
+                    alert('Ship overlaps with another')
+                    break;
+                }
+                else{
                 //update the ships coordinate array
                 ShipName.coordinates.push([positionRow,(positionCol + index)]) 
                 //update gameboard array
-                board[positionRow][positionCol + index] = ShipName;
+                board[positionRow][positionCol + index] = ShipName;  
                 
-            }    
-            shipArray.push(ShipName);        
-        }//if the alignment is vertical and the length of the alignment + ship length is less than 10 (length of board)
+                }
+                shipArray.push(ShipName);      
+            }
+        }
+        //if the alignment is vertical and the length of the alignment + ship length is less than 10 (length of board)
         else if (alignment == 'vertical' && (positionRow + ShipName.ShipLength < 10)) {
-            for (let index = 0; index < ShipName.ShipLength; index++) {
+            for (let index = 0; index < ShipName.ShipLength; index++) 
+            {
+                if (board[positionRow  + index][positionCol] != 0 && 
+                    board[positionRow  + index][positionCol] != 1 && 
+                    board[positionRow  + index][positionCol] != 2 && 
+                    board[positionRow  + index][positionCol] != 3 && 
+                    board[positionRow  + index][positionCol] != 4 && 
+                    board[positionRow  + index][positionCol] != 5 && 
+                    board[positionRow  + index][positionCol] != 6 && 
+                    board[positionRow  + index][positionCol] != 7 &&
+                    board[positionRow  + index][positionCol] != 8 &&
+                    board[positionRow  + index][positionCol] != 9) 
+                {
+                    alert('Ship overlaps with another');
+                    break;
+                }
+                else
+                {
                 //update the ships coordinate array
                 ShipName.coordinates.push([(positionRow + index),positionCol]);
-                //update gameboard array
-                board[positionRow + index][positionCol] = ShipName;
+
+
+                //had to take this out, as it was breaking the rendering of the ships on the boaard
+                //need another solution here
                 
+                //update gameboard array
+                // board[positionRow + index][positionCol] = ShipName;   
+                 
+                }            
+                       
             } 
+            console.log(ShipName.coordinates)
             shipArray.push(ShipName);
+            
         }
-        // else{alert('Bad ship placement')}
-        else{return false;}
+
+        //need some validation for if ships are not placed in the right spot
+        else{alert('Bad ship placement')}
+        // else{return false;}
     }
     //receiveAttack function that takes a pair
     // of coordinates, determines whether or not the attack hit a ship
