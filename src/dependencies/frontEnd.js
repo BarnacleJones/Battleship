@@ -1,9 +1,6 @@
 import {gamePlay, playerBoard, computerBoard} from './gameLoop'; 
-import { ShipName, coordinates, shipFactory } from "./shipFactory";
 
 function createBoards(){
-
-    gamePlay();
 
     let playersBoard = document.getElementById('playerBoard');
     let computersBoard = document.getElementById('computerBoard');
@@ -32,6 +29,7 @@ function createBoards(){
         //append to dom
         playersBoard.appendChild(col);            
     }
+
     //computer board
     for (let index = 0; index < computerBoard.board.length; index++) {
         //element is each row
@@ -59,16 +57,32 @@ function createBoards(){
         //get the ships coordinates
         let coordArray = element.coordinates;
         //go through each coordinate, set the DOM value (same as coords) to red as the ship is placed there
-        coordArray.forEach(item => {
-            console.log(item)
+        coordArray.forEach(item => {            
             document.getElementById(`[ ${item[0]}, ${item[1]} ]`).style.backgroundColor = 'red';
         });
     });
 
+    //render missed shots on the players board
+    playerBoard.missedShots.forEach(element => {
+        let id = `[ ${element[0]}, ${element[1]} ]`;
+        document.getElementById(id).style.backgroundColor = 'grey';
+    });
 
-
+    //render hit shots on the players board
+    let square;
+    //go through each ship on the board
+    playerBoard.shipArray.forEach(element => {
+        for (let index = 0; index < element.lengthArray.length; index++) {
+            //go through the 1/0 values on the ships length (0 means hit)
+            const value = element.lengthArray[index];
+            if (value == 0) 
+            {
+                //assign coordinate values to 'square'
+                square = element.coordinates[index];
+            }
         }
-     
+    });
+    document.getElementById(`[ ${square[0]}, ${square[1]} ]`).style.backgroundColor = 'green';
 
-
+    }
 export {createBoards};

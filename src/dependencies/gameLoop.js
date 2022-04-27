@@ -1,14 +1,14 @@
 import {shipFactory} from './shipFactory';
 import {gameBoard} from './gameBoard';
 import {player} from './player';
+import {createBoards} from './frontEnd'
 
 
-    //create boards
-    let playerBoard = gameBoard();
-    let computerBoard = gameBoard();
+//create boards
+let playerBoard = gameBoard();
+let computerBoard = gameBoard();
     
 function gamePlay(){
-
 
     //create players
     let player1 = player("Player1", computerBoard);
@@ -35,19 +35,12 @@ function gamePlay(){
     playerBoard.placeShip(playerDestroyer, 'horizontal', 8,1);
     playerBoard.placeShip(playerCarrier, 'horizontal', 9,1 );
 
-
-
-    
-
+    playerBoard.receiveAttack(7,3);
+    // let gameOver = playerBoard.checkIfAllShipsSunk();
+    // while (!gameOver) {
+        createBoards();
+        // gameOver = playerBoard.checkIfAllShipsSunk();
+    // }
 }
-
-
-// //attack x 4 to see if all ships are sunk - this is working
-// playBoard.receiveAttack(4,4);
-// playBoard.receiveAttack(3,4);
-// playBoard.receiveAttack(5,4);
-// playBoard.receiveAttack(6,4);
-// let gameover = playBoard.checkIfAllShipsSunk();
-// console.log(gameover)
 
 export {gamePlay, playerBoard, computerBoard};

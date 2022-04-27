@@ -1,6 +1,3 @@
-// const { ShipName, coordinates, default: shipFactory } = require("./shipFactory");
-import { ShipName, coordinates, shipFactory } from "./shipFactory";
-
 //gameboard factory
 const gameBoard = () =>{
     //2d array 10x10
@@ -10,32 +7,27 @@ const gameBoard = () =>{
     let shipArray = []
     //bool value for determining if all ships on board are sunk
     let allShipsSunk = false;
-    //function to place the ship
-    //remembering the 0 index value, so coords 4,3 (row,col), horiz will end up as
-    //[4,3],[4,4],[4,5],[4,6]]
-    function placeShip(ShipName, alignment,positionRow, positionCol)
+    //array holding all the ship coordinates
+    let allShipCoords = [];
+    //array holding all the missed shots
+    let missedShots = [];
+
+    //function to place the ship on the gameboard
+    function placeShip(ShipName, alignment, positionRow, positionCol)
     {
         //if the alignment is horizontal and the length of the alignment + ship length is less than 10 (length of board)
-        if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10) ) {
-
-            //need validation for if ships are overlapping
-            // if (document.getElementById(`[${positionRow}, ${positionCol + index}]`).style.backgroundColor != 'red') {
-               //this doesnt work as the document hasnt yet been rendered.... 
-            // }            
-            
+        if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10) ) {  
+            //first check there are no clashes with ships already on board       
+            let shipClash = false;
+            allShipCoords.forEach(element => 
+                { 
+                    if ((positionRow == element[0]) && (positionCol == element[1])) 
+                    {
+                        shipClash = true;
+                    } 
+                });
             for (let index = 0; index < ShipName.ShipLength; index++) {
-                if (
-                    //validation for if ships are overlapping (the value would be ship name, not a number)
-                    board[positionRow][positionCol + index] != 0 && 
-                    board[positionRow][positionCol + index] != 1 && 
-                    board[positionRow][positionCol + index] != 2 && 
-                    board[positionRow][positionCol + index] != 3 && 
-                    board[positionRow][positionCol + index] != 4 &&
-                    board[positionRow][positionCol + index] != 5 && 
-                    board[positionRow][positionCol + index] != 6 &&
-                    board[positionRow][positionCol + index] != 7 &&
-                    board[positionRow][positionCol + index] != 8 &&
-                    board[positionRow][positionCol + index] != 9) 
+                if (shipClash)               
                 {
                     alert('Ship overlaps with another')
                     break;
@@ -44,89 +36,92 @@ const gameBoard = () =>{
                 //update the ships coordinate array
                 ShipName.coordinates.push([positionRow,(positionCol + index)]) 
                 //update gameboard array
-                board[positionRow][positionCol + index] = ShipName;  
-                
-                }
-                shipArray.push(ShipName);      
+                // board[positionRow][positionCol + index] = ShipName; 
+                }                    
             }
+            //then push this object to shipArray as a record of ships on board
+            shipArray.push(ShipName);
+            //then push all coordinates of this ship to allShipCoords      
+            ShipName.coordinates.forEach(element => {allShipCoords.push(element);});
         }
         //if the alignment is vertical and the length of the alignment + ship length is less than 10 (length of board)
         else if (alignment == 'vertical' && (positionRow + ShipName.ShipLength < 10)) {
+            //first check there are no clashes with ships already on board       
+            let shipClash = false;
+            allShipCoords.forEach(element => 
+                { 
+                    if ((positionRow == element[0]) && (positionCol == element[1])) 
+                    {
+                        shipClash = true;
+                    } 
+                });
             for (let index = 0; index < ShipName.ShipLength; index++) 
             {
-                if (board[positionRow  + index][positionCol] != 0 && 
-                    board[positionRow  + index][positionCol] != 1 && 
-                    board[positionRow  + index][positionCol] != 2 && 
-                    board[positionRow  + index][positionCol] != 3 && 
-                    board[positionRow  + index][positionCol] != 4 && 
-                    board[positionRow  + index][positionCol] != 5 && 
-                    board[positionRow  + index][positionCol] != 6 && 
-                    board[positionRow  + index][positionCol] != 7 &&
-                    board[positionRow  + index][positionCol] != 8 &&
-                    board[positionRow  + index][positionCol] != 9) 
+                if (shipClash)               
                 {
-                    alert('Ship overlaps with another');
+                    alert('Ship overlaps with another')
                     break;
                 }
                 else
                 {
                 //update the ships coordinate array
                 ShipName.coordinates.push([(positionRow + index),positionCol]);
-
-
-                //had to take this out, as it was breaking the rendering of the ships on the boaard
-                //need another solution here
-                
-                //update gameboard array
-                // board[positionRow + index][positionCol] = ShipName;   
-                 
-                }            
-                       
+                }     
             } 
-            console.log(ShipName.coordinates)
             shipArray.push(ShipName);
-            
+            ShipName.coordinates.forEach(element => {allShipCoords.push(element);});            
         }
-
-        //need some validation for if ships are not placed in the right spot
+        //validation for if ships are not placed in the right spot
         else{alert('Bad ship placement')}
-        // else{return false;}
     }
-    //receiveAttack function that takes a pair
+    
+    //receiveAttack function takes a pair
     // of coordinates, determines whether or not the attack hit a ship
     // and then sends the ‘hit’ function to the correct ship, 
     //or records the coordinates of the missed shot.
     function receiveAttack(positionRow, positionCol)
-    {
-        let ship;
-            if(board[positionRow][positionCol].ShipName == undefined)
-            {
-                //missed the shot
-                // ship = 'missed';
-                console.log("missed")
-
-            }
-            else{
-                //assign object into 'ship'
-                ship = board[positionRow][positionCol];
-                //get the coordinates array
-                let shipCoordinates = ship.coordinates;  
-                //loop through that array, and see which index is the same as row/col
-                let indexofShip;
-                for (let i = 0; i < shipCoordinates.length; i++) {
-                    let element = shipCoordinates[i];
-                    if (element[0] == positionRow && element[1] == positionCol) {
-                        //return index of shipCoordinates array,
-                        //that is the value of the hit
-                        indexofShip = i;
-                    }
-                }      
-                //hit the ship at index   
-                ship.hit(indexofShip);
-                
-            }
-        //not doing anything with a missed shot at this stage, until I have a DOM
+    {               
+        //bool value if the attack coordinates hit a ship
+        let thisIsAHit = false;
+        //value for hit ship
+        let shipHit;
+        //value for index of the ship that has been hit
+        let hitIndex;
+        allShipCoords.forEach(element => 
+        {            
+            //each object in the ship array has array of coords
+            if ( (positionRow == element[0]) && (positionCol == element[1])) 
+            {   //this is a hit - send hit to correct ship                    
+                //determine which ship was hit and where
+                //loop through all ship objects on board
+                for (let index = 0; index < shipArray.length; index++) 
+                {
+                    //loop within the objects coordinates array
+                    for (let i = 0; i < shipArray[index].coordinates.length; i++) 
+                    {
+                        //coordinate for this loop
+                        const coord = shipArray[index].coordinates[i];
+                        if((coord[0] == positionRow) && (coord[1] == positionCol) )
+                        {
+                            //shipHit is the ship object
+                            shipHit = shipArray[index];
+                            //make hit index position of the coordinates in the array
+                            hitIndex = i;
+                        }
+                    }                
+                }
+                //call the hit function
+                shipHit.hit(hitIndex);
+                thisIsAHit = true;                
+            }        
+        });    
+        if (!thisIsAHit) {
+            //this is a miss. record missed coordinates so they can be rendered in frontEnd.js
+            missedShots.push([positionRow, positionCol]);
+        } 
     }
+
+
     //Gameboards should be able to report whether or not all of their ships have been sunk.
     function checkIfAllShipsSunk()
     {
@@ -150,10 +145,9 @@ const gameBoard = () =>{
         //check each value of shipArray.sunk 
         //if they are all 
         return allShipsSunk;
-    }   
-return {board, placeShip, receiveAttack, shipArray, checkIfAllShipsSunk}
+    }       
+
+return {board, placeShip, receiveAttack, shipArray, checkIfAllShipsSunk, missedShots}
 }
 
 export {gameBoard};
-
-// module.exports = playBoard;

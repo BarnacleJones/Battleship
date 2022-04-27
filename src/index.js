@@ -1,5 +1,5 @@
 import './style.css';
-import {createBoards} from './dependencies/frontend';
+import { gamePlay } from './dependencies/gameLoop';
 
-
-createBoards();
+//call the game loop function
+gamePlay();
