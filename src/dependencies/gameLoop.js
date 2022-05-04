@@ -7,12 +7,13 @@ import {createBoards} from './frontEnd'
 //create boards
 let playerBoard = gameBoard();
 let computerBoard = gameBoard();
+
+//create players
+
+let player1 = player("Player1", computerBoard);
+let player2COMP = player("Player2COMP", playerBoard);
     
 function gamePlay(){
-
-    //create players
-    let player1 = player("Player1", computerBoard);
-    let player2COMP = player("Player2COMP", playerBoard);
 
     //create player ships
     let playerBattleship = shipFactory(4, 'battleship');
@@ -35,7 +36,17 @@ function gamePlay(){
     playerBoard.placeShip(playerDestroyer, 'horizontal', 8,1);
     playerBoard.placeShip(playerCarrier, 'horizontal', 9,1 );
 
+    computerBoard.placeShip(computerBattleship, 'vertical', 3,3 );
+    computerBoard.placeShip(computerPatrol, 'horizontal', 0,3 );
+    computerBoard.placeShip(computerSubmarine, 'vertical', 3,6 );
+    computerBoard.placeShip(computerDestroyer, 'horizontal', 8,1);
+    computerBoard.placeShip(computerCarrier, 'horizontal', 9,1 );
+
     playerBoard.receiveAttack(7,3);
+    playerBoard.receiveAttack(6,3);
+    playerBoard.receiveAttack(0,4);
+    computerBoard.receiveAttack(7,3);
+    computerBoard.receiveAttack(6,3);
     // let gameOver = playerBoard.checkIfAllShipsSunk();
     // while (!gameOver) {
         createBoards();
@@ -43,4 +54,9 @@ function gamePlay(){
     // }
 }
 
-export {gamePlay, playerBoard, computerBoard};
+function playerTurn(row, col)
+{
+    player1.takeTurn(row, col);   
+}
+
+export {gamePlay, playerBoard, computerBoard, playerTurn};

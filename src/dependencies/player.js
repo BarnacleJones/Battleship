@@ -1,5 +1,6 @@
 
 const { receiveAttack } = require("./gameBoard");
+import {createBoards} from './frontEnd'
 
 const player = (name, enemyGameboard) =>
 {   
@@ -45,8 +46,11 @@ const player = (name, enemyGameboard) =>
         //not a computer
         gameBoardAttackBoard.receiveAttack(aRow, aCol)
         //the board to attack is the computers board
+        
+        createBoards();
     }
 }
+return{takeTurn}
 
 }
 
