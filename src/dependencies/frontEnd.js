@@ -14,7 +14,7 @@ function displayBoard(boardToDisplay) {
     let col = document.createElement("div");
     // row.className = 'row';
     if (boardToDisplay === computerBoard) {
-      col.setAttribute("class", "computerCellsDiv");
+      col.setAttribute("class", "computerRowDiv");
     } else {
       col.setAttribute("class", "playerColDiv");
     }
@@ -24,10 +24,13 @@ function displayBoard(boardToDisplay) {
       if (boardToDisplay === computerBoard) {
         column.setAttribute("id", `c[ ${i}, ${element[index]} ]`);
         column.onclick = () => playerTurn(`${i}`, `${element[index]}`);
+        
+        column.setAttribute("class", "computerCellsDiv");
       } else {
         column.setAttribute("id", `[ ${i}, ${element[index]} ]`);
+        column.setAttribute("class", "playerCellsDiv");
       }
-      column.setAttribute("class", "playerCellsDiv");
+      
       column.innerText = "";
       col.appendChild(column);
     }

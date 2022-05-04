@@ -42,11 +42,11 @@ function gamePlay(){
     computerBoard.placeShip(computerDestroyer, 'horizontal', 8,1);
     computerBoard.placeShip(computerCarrier, 'horizontal', 9,1 );
 
-    playerBoard.receiveAttack(7,3);
-    playerBoard.receiveAttack(6,3);
-    playerBoard.receiveAttack(0,4);
-    computerBoard.receiveAttack(7,3);
-    computerBoard.receiveAttack(6,3);
+    // playerBoard.receiveAttack(7,3);
+    // playerBoard.receiveAttack(6,3);
+    // playerBoard.receiveAttack(0,4);
+    // computerBoard.receiveAttack(7,3);
+    // computerBoard.receiveAttack(6,3);
     // let gameOver = playerBoard.checkIfAllShipsSunk();
     // while (!gameOver) {
         createBoards();
@@ -56,7 +56,24 @@ function gamePlay(){
 
 function playerTurn(row, col)
 {
-    player1.takeTurn(row, col);   
+    player1.takeTurn(row, col); 
+
+    //immediately after, the computer takes a turn - for testing anyway
+    let col2 = Math.floor(Math.random() * 10);
+    let row2 = Math.floor(Math.random() * 10);
+    player2COMP.takeTurn(col2, row2);  
+
+
+    //check if all ships sunk
+    let gameoverPlayer = playerBoard.checkIfAllShipsSunk();
+    let gameoverComputer = computerBoard.checkIfAllShipsSunk()
+
+    if (gameoverPlayer) {
+        alert("Computer wins");
+    }
+    if (gameoverComputer) {
+        alert("Player wins");
+    }
 }
 
 export {gamePlay, playerBoard, computerBoard, playerTurn};

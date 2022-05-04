@@ -45,8 +45,7 @@ const player = (name, enemyGameboard) =>
     {
         //not a computer
         gameBoardAttackBoard.receiveAttack(aRow, aCol)
-        //the board to attack is the computers board
-        
+        //the board to attack is the computers board        
         createBoards();
     }
 }
