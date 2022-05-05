@@ -1,4 +1,4 @@
-import { gamePlay, playerBoard, computerBoard, playerTurn } from "./gameLoop";
+import { playerBoard, computerBoard, playerTurn } from "./gameLoop";
 
 //Global variables
 let playersBoard = document.getElementById("playerBoard");
@@ -49,10 +49,10 @@ function displayBoard(boardToDisplay) {
     //go through each coordinate, set the DOM value (same as coords) to red as the ship is placed there
     coordArray.forEach((item) => {
       if (boardToDisplay === computerBoard) {
-        // document.getElementById(
-        //   `c[ ${item[0]}, ${item[1]} ]`
-        // ).style.backgroundColor = "red";
-        //do nothing
+        document.getElementById(
+          `c[ ${item[0]}, ${item[1]} ]`
+        ).style.backgroundColor = "red";
+        //do nothing - uncomment to see computer board placement
       } else {
         document.getElementById(
           `[ ${item[0]}, ${item[1]} ]`
@@ -96,8 +96,7 @@ function displayBoard(boardToDisplay) {
   });
 }
 
-function createBoards() {
-  
+function createBoards() {  
   playersBoard.innerHTML = "";
   computersBoard.innerHTML = "";
   displayBoard(computerBoard);

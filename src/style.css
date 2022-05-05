@@ -11,11 +11,14 @@ body{
     color: #233B48;
 }
 
-#startButton{
-    width: max-content;
+#startButton, #restartButton{
+    
     display: flex;
+    width: max-content;
+    /* flex-direction: row; */
     font-size: 2rem;
     align-self: center;
+    margin: auto;
     background-color: #FBC874;
     border-radius: 5px;
     border: none;

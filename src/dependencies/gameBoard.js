@@ -12,9 +12,18 @@ const gameBoard = () =>{
     //array holding all the missed shots
     let missedShots = [];
 
+    //clash ship bool
+    // let shipClash = false;
+    let anyShipClash = false;
+
     //function to place the ship on the gameboard
     function placeShip(ShipName, alignment, positionRow, positionCol)
+    // function placeShip(ShipName, alignment)
     {
+        // //code to randomise board placement
+        // let positionRow = Math.floor(Math.random() * 10);
+        // let positionCol = Math.floor(Math.random() * 10);
+
         //if the alignment is horizontal and the length of the alignment + ship length is less than 10 (length of board)
         if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10) ) {  
             //first check there are no clashes with ships already on board       
@@ -24,19 +33,25 @@ const gameBoard = () =>{
                     if ((positionRow == element[0]) && (positionCol == element[1])) 
                     {
                         shipClash = true;
+                        // anyShipClash = true;
                     } 
+                    // else{anyShipClash = false}
                 });
             for (let index = 0; index < ShipName.ShipLength; index++) {
                 if (shipClash)               
-                {
+                {                    
+                    // return false;
+                    // anyShipClash = true;
                     alert('Ship overlaps with another')
                     break;
                 }
                 else{
                 //update the ships coordinate array
                 ShipName.coordinates.push([positionRow,(positionCol + index)]) 
+                // return true;
                 //update gameboard array
-                // board[positionRow][positionCol + index] = ShipName; 
+                board[positionRow][positionCol + index] = ShipName; 
+                // anyShipClash = false;
                 }                    
             }
             //then push this object to shipArray as a record of ships on board
@@ -53,12 +68,16 @@ const gameBoard = () =>{
                     if ((positionRow == element[0]) && (positionCol == element[1])) 
                     {
                         shipClash = true;
+                        // anyShipClash = true;
                     } 
+                    // else{anyShipClash = false}
                 });
             for (let index = 0; index < ShipName.ShipLength; index++) 
             {
                 if (shipClash)               
                 {
+                    // anyShipClash = true;
+                    // return false;
                     alert('Ship overlaps with another')
                     break;
                 }
@@ -66,13 +85,19 @@ const gameBoard = () =>{
                 {
                 //update the ships coordinate array
                 ShipName.coordinates.push([(positionRow + index),positionCol]);
+                anyShipClash = false;
+                shipArray.push(ShipName);
+                ShipName.coordinates.forEach(element => {allShipCoords.push(element);});   
+                // return true;
                 }     
             } 
-            shipArray.push(ShipName);
-            ShipName.coordinates.forEach(element => {allShipCoords.push(element);});            
+                  
         }
         //validation for if ships are not placed in the right spot
-        else{alert('Bad ship placement')}
+        else{
+            // anyShipClash = true;
+            alert('Bad ship placement')
+        }
     }
     
     //receiveAttack function takes a pair
@@ -147,7 +172,7 @@ const gameBoard = () =>{
         return allShipsSunk;
     }       
 
-return {board, placeShip, receiveAttack, shipArray, checkIfAllShipsSunk, missedShots}
+return {board, allShipCoords, placeShip, receiveAttack, shipArray, checkIfAllShipsSunk, missedShots, anyShipClash}
 }
 
 export {gameBoard};
