@@ -12,8 +12,7 @@ const gameBoard = () =>{
     //array holding all the missed shots
     let missedShots = [];
 
-    //clash ship bool
-    // let shipClash = false;
+    //clash ship bool for random placement
     let anyShipClash = false;
 
     //function to place the ship on the gameboard

@@ -86,10 +86,12 @@ function playerTurn(row, col)
     let gameoverComputer = computerBoard.checkIfAllShipsSunk()
 
     if (gameoverPlayer) {
-        alert("Computer wins");
+        alert("Computer wins!");
+        location.reload();
     }
     if (gameoverComputer) {
-        alert("Player wins");
+        alert("Player wins!");
+        location.reload();
     }
 }
 
