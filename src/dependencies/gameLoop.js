@@ -14,6 +14,9 @@ let player2COMP = player("Player2COMP", playerBoard);
 
 function gamePlay(){
 
+    playerBoard.missedShots = [];
+    computerBoard.missedShots = [];
+
 //create player ships
 let playerBattleship = shipFactory(4, 'battleship');
 let playerPatrol = shipFactory(2, 'patrol');
@@ -81,6 +84,10 @@ function playerTurn(row, col)
     player2COMP.takeTurn(col2, row2);  
 
 
+    //ensure game is started before congratulating winner...
+    if (playerBoard.shipArray.length > 1) {
+        
+    
     //check if all ships sunk
     let gameoverPlayer = playerBoard.checkIfAllShipsSunk();
     let gameoverComputer = computerBoard.checkIfAllShipsSunk()
@@ -93,6 +100,7 @@ function playerTurn(row, col)
         alert("Player wins!");
         location.reload();
     }
+}
 }
 
 export {gamePlay, playerBoard, computerBoard, playerTurn};
