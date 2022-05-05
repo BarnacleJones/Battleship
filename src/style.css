@@ -4,41 +4,86 @@ body{
     grid-template-columns: 1;
     grid-template-rows: 1fr 4fr .25fr;
     margin: 0;
-    background-color: rgb(126, 126, 216);
+    background-image: url(/images/battleshipBackground.gif);
+    background-size:100% 100vh;
+    background-repeat:no-repeat;
+    font-family: 'Bangers', cursive;
+    color: #233B48;
 }
 
 header{
-    grid-area: 1 / 1 / span 1  /span 1;
+    grid-area: 1 / 1 / span 1  /span 1;   
 }
 
 main{
     grid-area: 2 / 1 / span 1  /span 1;
-    min-height: max-content;
-    display: flex;
-    /* align-items: center; */
+    display:flex;    
+    margin: auto;
+    height: 60vh;
+    align-items: center;
+    padding: 2%;
+    background-image: linear-gradient(75deg, #FBC874, #5794A6) ;
+    
+    opacity: 0.8;
+    border-radius: 5px;
+    
+    
 }
 
 footer{
-    grid-area: 3 / 1 / span 0  /span 0;
+  grid-area: 3 / 1 / span 0  /span 0;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: rgb(71, 68, 68);
-  color: white;
-  text-align: center;
+  background-color: #3A6572;
+  opacity: 0.4;  
+}
+
+#title{
+    font-size: 4rem;
 }
 
 #playerBoard, #computerBoard{
     display: flex; 
-    flex-grow: 1;
-    align-items:stretch;
+    flex-direction: row;
+    flex-grow: 0;
+    /* align-items:center; */
+    background-color: black;
+    opacity: 0.8;
 }
 .playerCellsDiv, .playerRowDiv, .computerRowDiv .computerCellsDiv{    
     width: 2em;
     height: 2em;    
 }
 .playerCellsDiv, .computerCellsDiv{
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
+@media screen and (max-width: 580px) {
+    main {
+      flex-direction: column;
+      /* background-color: none; */
+      margin: none;
+      /* width: 80vw; */
+      height: 80vh;
+      padding: none; 
+    }
+
+    body{
+        /* height: 100vh; */
+        background-repeat: repeat-y;
+        background-size: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .playerCellsDiv, .playerRowDiv, .computerRowDiv .computerCellsDiv{    
+        width: 1.5rem;
+        height: 1.5rem;    
+    }
+
+    #title{
+        font-size: 2rem;
+    }
+  }
