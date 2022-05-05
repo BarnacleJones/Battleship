@@ -49,9 +49,10 @@ function displayBoard(boardToDisplay) {
     //go through each coordinate, set the DOM value (same as coords) to red as the ship is placed there
     coordArray.forEach((item) => {
       if (boardToDisplay === computerBoard) {
-        document.getElementById(
-          `c[ ${item[0]}, ${item[1]} ]`
-        ).style.backgroundColor = "red";
+        // document.getElementById(
+        //   `c[ ${item[0]}, ${item[1]} ]`
+        // ).style.backgroundColor = "red";
+        //do nothing
       } else {
         document.getElementById(
           `[ ${item[0]}, ${item[1]} ]`
@@ -96,6 +97,7 @@ function displayBoard(boardToDisplay) {
 }
 
 function createBoards() {
+  
   playersBoard.innerHTML = "";
   computersBoard.innerHTML = "";
   displayBoard(computerBoard);

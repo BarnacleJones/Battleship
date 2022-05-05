@@ -12,46 +12,51 @@ let computerBoard = gameBoard();
 
 let player1 = player("Player1", computerBoard);
 let player2COMP = player("Player2COMP", playerBoard);
+
+
+
+
+function randomShips()
+{
+
+//this is where ships will be randomly be placed....
+//at the moment ships are clashing when loaded here.
+    
+}
     
 function gamePlay(){
 
-    //create player ships
-    let playerBattleship = shipFactory(4, 'battleship');
-    let playerPatrol = shipFactory(2, 'patrol');
-    let playerSubmarine = shipFactory(3, 'submarine');
-    let playerDestroyer = shipFactory(4, 'destroyer');
-    let playerCarrier = shipFactory(5, 'carrier');
+        //create player ships
+        let playerBattleship = shipFactory(4, 'battleship');
+        let playerPatrol = shipFactory(2, 'patrol');
+        let playerSubmarine = shipFactory(3, 'submarine');
+        let playerDestroyer = shipFactory(4, 'destroyer');
+        let playerCarrier = shipFactory(5, 'carrier');
+        
+        //create computer ships
+        let computerBattleship = shipFactory(4, 'battleship');
+        let computerPatrol = shipFactory(2, 'patrol');
+        let computerSubmarine = shipFactory(3, 'submarine');
+        let computerDestroyer = shipFactory(4, 'destroyer');
+        let computerCarrier = shipFactory(5, 'carrier');
+        
+        
+        playerBoard.placeShip(playerBattleship, 'vertical', 3,3 );
+        playerBoard.placeShip(playerPatrol, 'horizontal', 0,3 );
+        playerBoard.placeShip(playerSubmarine, 'vertical', 3,6 );
+        playerBoard.placeShip(playerDestroyer, 'horizontal', 8,1);
+        playerBoard.placeShip(playerCarrier, 'horizontal', 9,1 );
+        
+        
+        computerBoard.placeShip(computerBattleship, 'vertical', 3,3 );
+        computerBoard.placeShip(computerPatrol, 'horizontal', 0,3 );
+        computerBoard.placeShip(computerSubmarine, 'vertical', 3,6 );
+        computerBoard.placeShip(computerDestroyer, 'horizontal', 8,1);
+        computerBoard.placeShip(computerCarrier, 'horizontal', 9,1 );
+        
 
-    //create computer ships
-    let computerBattleship = shipFactory(4, 'battleship');
-    let computerPatrol = shipFactory(2, 'patrol');
-    let computerSubmarine = shipFactory(3, 'submarine');
-    let computerDestroyer = shipFactory(4, 'destroyer');
-    let computerCarrier = shipFactory(5, 'carrier');
 
-    //place player ships
-    playerBoard.placeShip(playerBattleship, 'vertical', 3,3 );
-    playerBoard.placeShip(playerPatrol, 'horizontal', 0,3 );
-    playerBoard.placeShip(playerSubmarine, 'vertical', 3,6 );
-    playerBoard.placeShip(playerDestroyer, 'horizontal', 8,1);
-    playerBoard.placeShip(playerCarrier, 'horizontal', 9,1 );
-
-    computerBoard.placeShip(computerBattleship, 'vertical', 3,3 );
-    computerBoard.placeShip(computerPatrol, 'horizontal', 0,3 );
-    computerBoard.placeShip(computerSubmarine, 'vertical', 3,6 );
-    computerBoard.placeShip(computerDestroyer, 'horizontal', 8,1);
-    computerBoard.placeShip(computerCarrier, 'horizontal', 9,1 );
-
-    // playerBoard.receiveAttack(7,3);
-    // playerBoard.receiveAttack(6,3);
-    // playerBoard.receiveAttack(0,4);
-    // computerBoard.receiveAttack(7,3);
-    // computerBoard.receiveAttack(6,3);
-    // let gameOver = playerBoard.checkIfAllShipsSunk();
-    // while (!gameOver) {
-        createBoards();
-        // gameOver = playerBoard.checkIfAllShipsSunk();
-    // }
+createBoards();
 }
 
 function playerTurn(row, col)
@@ -76,4 +81,4 @@ function playerTurn(row, col)
     }
 }
 
-export {gamePlay, playerBoard, computerBoard, playerTurn};
+export {gamePlay, playerBoard, computerBoard, playerTurn, randomShips};
