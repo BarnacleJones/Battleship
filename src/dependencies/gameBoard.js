@@ -17,14 +17,10 @@ const gameBoard = () =>{
 
     //function to place the ship on the gameboard
     function placeShip(ShipName, alignment, positionRow, positionCol)
-    // function placeShip(ShipName, alignment)
     {
-        // //code to randomise board placement
-        // let positionRow = Math.floor(Math.random() * 10);
-        // let positionCol = Math.floor(Math.random() * 10);
 
         //if the alignment is horizontal and the length of the alignment + ship length is less than 10 (length of board)
-        if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10) ) {  
+        if (alignment == 'horizontal' && (positionCol + ShipName.ShipLength < 10) && (positionRow < 10) ) {  
             //first check there are no clashes with ships already on board       
             let shipClash = false;
             allShipCoords.forEach(element => 
@@ -32,25 +28,20 @@ const gameBoard = () =>{
                     if ((positionRow == element[0]) && (positionCol == element[1])) 
                     {
                         shipClash = true;
-                        // anyShipClash = true;
                     } 
-                    // else{anyShipClash = false}
+                    
                 });
             for (let index = 0; index < ShipName.ShipLength; index++) {
                 if (shipClash)               
-                {                    
-                    // return false;
-                    // anyShipClash = true;
+                {                                    
                     alert('Ship overlaps with another')
                     break;
                 }
                 else{
                 //update the ships coordinate array
                 ShipName.coordinates.push([positionRow,(positionCol + index)]) 
-                // return true;
                 //update gameboard array
                 board[positionRow][positionCol + index] = ShipName; 
-                // anyShipClash = false;
                 }                    
             }
             //then push this object to shipArray as a record of ships on board
@@ -58,25 +49,22 @@ const gameBoard = () =>{
             //then push all coordinates of this ship to allShipCoords      
             ShipName.coordinates.forEach(element => {allShipCoords.push(element);});
         }
+       
         //if the alignment is vertical and the length of the alignment + ship length is less than 10 (length of board)
-        else if (alignment == 'vertical' && (positionRow + ShipName.ShipLength < 10)) {
+        else if (alignment == 'vertical' && (positionRow + ShipName.ShipLength < 10) && (positionCol < 10)) {
             //first check there are no clashes with ships already on board       
             let shipClash = false;
             allShipCoords.forEach(element => 
                 { 
                     if ((positionRow == element[0]) && (positionCol == element[1])) 
                     {
-                        shipClash = true;
-                        // anyShipClash = true;
-                    } 
-                    // else{anyShipClash = false}
+                        shipClash = true;                        
+                    }                   
                 });
             for (let index = 0; index < ShipName.ShipLength; index++) 
             {
                 if (shipClash)               
                 {
-                    // anyShipClash = true;
-                    // return false;
                     alert('Ship overlaps with another')
                     break;
                 }
@@ -86,16 +74,15 @@ const gameBoard = () =>{
                 ShipName.coordinates.push([(positionRow + index),positionCol]);
                 anyShipClash = false;
                 shipArray.push(ShipName);
-                ShipName.coordinates.forEach(element => {allShipCoords.push(element);});   
-                // return true;
+                ShipName.coordinates.forEach(element => {allShipCoords.push(element);});                   
                 }     
             } 
                   
         }
         //validation for if ships are not placed in the right spot
-        else{
-            // anyShipClash = true;
-            alert('Bad ship placement')
+        else{            
+            alert('Bad ship placement, resetting the page');
+            window.location.reload();
         }
     }
     

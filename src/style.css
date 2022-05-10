@@ -67,7 +67,8 @@ footer{
 }
 .playerCellsDiv, .playerRowDiv, .computerRowDiv .computerCellsDiv{    
     width: 2em;
-    height: 2em;    
+    height: 2em;  
+    text-align: center;    
 }
 .playerCellsDiv, .computerCellsDiv{
     border: 1px solid white;
@@ -94,7 +95,9 @@ footer{
 
     .playerCellsDiv, .playerRowDiv, .computerRowDiv .computerCellsDiv{    
         width: 1.5rem;
-        height: 1.5rem;    
+        height: 1.5rem;  
+        
+         
     }
     #startButton, #restartButton{
         font-size: 1rem;

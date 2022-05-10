@@ -31,45 +31,42 @@ let computerSubmarine = shipFactory(3, 'submarine');
 let computerDestroyer = shipFactory(4, 'destroyer');
 let computerCarrier = shipFactory(5, 'carrier');
 
-    // playerBoard.anyShipClash = true;
-    //     while (playerBoard.anyShipClash) {
-    //         playerBoard.placeShip(playerBattleship, 'vertical');
-    //         playerBoard.placeShip(playerPatrol, 'horizontal');
-    //         playerBoard.placeShip(playerSubmarine, 'vertical');
-    //         playerBoard.placeShip(playerDestroyer, 'horizontal');
-    //         playerBoard.placeShip(playerCarrier, 'horizontal');
-    //     }
+//Board placement for player
+let battleshipRowCoord = Number(prompt("Please enter your Battleships x coordinate"));
+let battleshipColCoord = Number(prompt("Please enter your Battleships y coordinate"));
+let battleshipAlignment = prompt("Please enter your Battleships placement (horizontal or vertical)");        
+playerBoard.placeShip(playerBattleship, battleshipAlignment, battleshipRowCoord,battleshipColCoord );
+createBoards();
 
+let patrolRowCoord = Number(prompt("Please enter your Patrols x coordinate"));
+let patrolColCoord = Number(prompt("Please enter your Patrols y coordinate"));
+let patrolAlignment = prompt("Please enter your Patrols placement (horizontal or vertical)");        
+playerBoard.placeShip(playerPatrol, patrolAlignment, patrolRowCoord, patrolColCoord );
+createBoards();
 
-        
-        
-        playerBoard.placeShip(playerBattleship, 'vertical', 3,3 );
-        playerBoard.placeShip(playerPatrol, 'horizontal', 0,3 );
-        playerBoard.placeShip(playerSubmarine, 'vertical', 3,6 );
-        playerBoard.placeShip(playerDestroyer, 'horizontal', 8,1);
-        playerBoard.placeShip(playerCarrier, 'horizontal', 9,1 );
-        
-       
-        
-        
-        
+let submarineRowCoord = Number(prompt("Please enter your Submarine x coordinate"));
+let submarineColCoord = Number(prompt("Please enter your Submarine y coordinate"));
+let submarineAlignment = prompt("Please enter your Submarine placement (horizontal or vertical)");        
+playerBoard.placeShip(playerSubmarine, submarineAlignment, submarineRowCoord,submarineColCoord );
+createBoards();
 
-        
-        
-        // do {
-            computerBoard.placeShip(computerBattleship, 'vertical', 3,3 );
-            computerBoard.placeShip(computerPatrol, 'horizontal', 0,3 );
-            computerBoard.placeShip(computerSubmarine, 'vertical', 3,6 );
-            computerBoard.placeShip(computerDestroyer, 'horizontal', 8,1);
-            computerBoard.placeShip(computerCarrier, 'horizontal', 9,1 );
-        //     computerBoard.placeShip(computerBattleship, 'vertical');
-        //     computerBoard.placeShip(computerPatrol, 'horizontal');
-        //     computerBoard.placeShip(computerSubmarine, 'vertical');
-        //     computerBoard.placeShip(computerDestroyer, 'horizontal');
-        //     computerBoard.placeShip(computerCarrier, 'horizontal');
-        // } while (computerBoard.anyShipClash);
-        
-        
+let DestroyerRowCoord = Number(prompt("Please enter your Destroyer x coordinate"));
+let DestroyerColCoord = Number(prompt("Please enter your Destroyer y coordinate"));
+let DestroyerAlignment = prompt("Please enter your Destroyer placement (horizontal or vertical)");        
+playerBoard.placeShip(playerDestroyer, DestroyerAlignment, DestroyerRowCoord,DestroyerColCoord );
+createBoards();
+
+let CarrierRowCoord = Number(prompt("Please enter your Carrier x coordinate"));
+let CarrierColCoord = Number(prompt("Please enter your Carrier y coordinate"));
+let CarrierAlignment = prompt("Please enter your Carrier placement (horizontal or vertical)");        
+playerBoard.placeShip(playerCarrier, CarrierAlignment, CarrierRowCoord,CarrierColCoord );
+createBoards();
+
+computerBoard.placeShip(computerBattleship, 'vertical', 3,3 );
+computerBoard.placeShip(computerPatrol, 'horizontal', 0,3 );
+computerBoard.placeShip(computerSubmarine, 'vertical', 3,6 );
+computerBoard.placeShip(computerDestroyer, 'horizontal', 8,1);
+computerBoard.placeShip(computerCarrier, 'horizontal', 9,1 );
 
 createBoards();
 }

@@ -23,15 +23,20 @@ function displayBoard(boardToDisplay) {
       let column = document.createElement("div");
       if (boardToDisplay === computerBoard) {
         column.setAttribute("id", `c[ ${i}, ${element[index]} ]`);
-        column.onclick = () => playerTurn(`${i}`, `${element[index]}`);
-        
+        column.onclick = () => playerTurn(`${i}`, `${element[index]}`);        
         column.setAttribute("class", "computerCellsDiv");
       } else {
         column.setAttribute("id", `[ ${i}, ${element[index]} ]`);
         column.setAttribute("class", "playerCellsDiv");
       }
-      
-      column.innerText = "";
+      if (i === 0) {
+        column.innerText = "y" + index;
+      }
+      else if (index === 0) {
+        column.innerText = "x" + i;
+      }
+      else{
+      column.innerText = "";}
       col.appendChild(column);
     }
     //append to dom
@@ -49,9 +54,9 @@ function displayBoard(boardToDisplay) {
     //go through each coordinate, set the DOM value (same as coords) to red as the ship is placed there
     coordArray.forEach((item) => {
       if (boardToDisplay === computerBoard) {
-        document.getElementById(
-          `c[ ${item[0]}, ${item[1]} ]`
-        ).style.backgroundColor = "red";
+        // document.getElementById(
+        //   `c[ ${item[0]}, ${item[1]} ]`
+        // ).style.backgroundColor = "red";
         //do nothing - uncomment to see computer board placement
       } else {
         document.getElementById(
