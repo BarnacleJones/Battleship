@@ -14,8 +14,8 @@ let player2COMP = player("Player2COMP", playerBoard);
 
 function gamePlay(){
 
-    playerBoard.missedShots = [];
-    computerBoard.missedShots = [];
+    // playerBoard.missedShots = [];
+    // computerBoard.missedShots = [];
 
 //create player ships
 let playerBattleship = shipFactory(4, 'battleship');
